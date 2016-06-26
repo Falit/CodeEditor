@@ -1934,7 +1934,7 @@ var latexCompleter = {
 
 
 
-
+/*
 var rhymeCompleter = {
       getCompletions: function(editor, session, pos, prefix, callback) {
           if (prefix.length === 0) {
@@ -1956,7 +1956,7 @@ var rhymeCompleter = {
               })
       }
   };
-
+*/
 var snippetCompleter = {   
     getCompletions: function(editor, session, pos, prefix, callback) {
         var snippetMap = snippetManager.snippetMap;
@@ -1988,7 +1988,7 @@ var snippetCompleter = {
     }
 };
 
-var completers = [snippetCompleter, latexCompleter, textCompleter, rhymeCompleter, keyWordCompleter];
+var completers = [snippetCompleter, latexCompleter, textCompleter, keyWordCompleter];
 exports.setCompleters = function(val) {
     completers.length = 0;
     if (val) completers.push.apply(completers, val);
@@ -1999,7 +1999,7 @@ exports.addCompleter = function(completer) {
 exports.textCompleter = textCompleter;
 exports.keyWordCompleter = keyWordCompleter;
 exports.snippetCompleter = snippetCompleter;
-exports.rhymeCompleter = rhymeCompleter;
+//exports.rhymeCompleter = rhymeCompleter;
 exports.latexCompleter = latexCompleter;
 var expandSnippet = {
     name: "expandSnippet",
