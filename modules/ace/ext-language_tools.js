@@ -335,7 +335,9 @@ var SnippetManager = function() {
         });
         var range = editor.getSelectionRange();
         var end = editor.session.replace(range, text);
+    
 
+            
         var tabstopManager = new TabstopManager(editor);
         var selectionId = editor.inVirtualSelectionMode && editor.selection.index;
         tabstopManager.addTabstops(tabstops, range.start, end, selectionId);
@@ -356,8 +358,9 @@ var SnippetManager = function() {
 
     this.$getScope = function(editor) {
         var scope = editor.session.$mode.$id || "";
+        
         scope = scope.split("/").pop();
-        if (scope === "html" || scope === "php") {
+            if (scope === "html" || scope === "php") {
             if (scope === "php" && !editor.session.$mode.inlinePhp) 
                 scope = "html";
             var c = editor.getCursorPosition();
@@ -380,6 +383,7 @@ var SnippetManager = function() {
 
     this.getActiveScopes = function(editor) {
         var scope = this.$getScope(editor);
+        console.log(scope);
         var scopes = [scope];
         var snippetMap = this.snippetMap;
         if (snippetMap[scope] && snippetMap[scope].includeScopes) {
@@ -1813,7 +1817,7 @@ var keyWordCompleter = {
 
 
 
-  console.log(staticSnippets);
+ 
   staticSnippets = staticSnippets.concat([
     {
       caption: "\\begin{array}...",
