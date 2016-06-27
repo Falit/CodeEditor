@@ -1797,7 +1797,7 @@ var keyWordCompleter = {
 
 
 
-
+/** Latex Completions **/ 
  var  env, environments, parseBeginCommands, parseCustomEnvironments, staticSnippets;
   environments = ["abstract", "align", "align*", "equation", "equation*", "gather", "gather*", "multline", "multline*", "split", "verbatim"];
   staticSnippets = {};
@@ -1934,7 +1934,7 @@ var latexCompleter = {
 
 
 
-/*
+/* The :following  is an example of a custom  autocompletions */
 var rhymeCompleter = {
       getCompletions: function(editor, session, pos, prefix, callback) {
           if (prefix.length === 0) {
