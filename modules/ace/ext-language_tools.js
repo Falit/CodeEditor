@@ -1935,7 +1935,7 @@ var latexCompleter = {
 
 
 /* The :following  is an example of a custom  autocompletions */
-var rhymeCompleter = {
+/*var rhymeCompleter = {
       getCompletions: function(editor, session, pos, prefix, callback) {
           if (prefix.length === 0) {
               callback(null, []);
