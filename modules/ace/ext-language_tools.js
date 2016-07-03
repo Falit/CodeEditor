@@ -1798,20 +1798,80 @@ var keyWordCompleter = {
 
 
 /** Latex Completions **/ 
- var  env, environments, parseBeginCommands, parseCustomEnvironments, staticSnippets;
+ var  falit2,env, environments, parseBeginCommands, parseCustomEnvironments, staticSnippets;
   environments = ["abstract", "align", "align*", "equation", "equation*", "gather", "gather*", "multline", "multline*", "split", "verbatim"];
-  staticSnippets = {};
-  staticSnippets.concat = (function() {
-    var i, len, results;
+
+
+
+  var test123 = [{
+            caption: "frac",
+            snippet: " \\frac{$arg}{$arg}",
+            meta: "env",
+         },{
+             caption: "underset",
+             snippet: "\\underset{$1:text}{$2:text}",
+             meta: "env"
+         },{
+            caption: "cases",
+            snippet: "\\begin{cases}\n$case1\n\\$case2\n\\end{cases}",
+            meta: "env",
+         },{
+            caption: "sum",
+            snippet: "\\sum_{$inf}^{$sup}",
+            meta: "env",
+         },{
+            caption: "indefinite integral",
+            snippet: "\\int d${1:x}",
+            meta: "env",
+         },{
+            caption: "matrix",
+            snippet: "\\begin{matrix}\n$1 & $2\n\\$3 & $4\\end{matrix}",
+            meta: "env",
+         },{
+            caption: "definite integral",
+            snippet: " \\int_{$1}^{$2} d${3:x}",
+            meta: "env",
+         },{
+            caption: "lim",
+            snippet: "\\lim_{$1:x}",
+            meta: "env",
+         },{
+            caption: "overrightarrow",
+            snippet: "\\overrightarrow{$1:x}",
+            meta: "env",
+         },{
+            caption: "overbrace",
+            snippet: "\\overbrace{$1:x}",
+            meta: "env",
+         },{
+            caption: "underbrace",
+            snippet: "\\underbrace{$1:x}",
+            meta: "env",
+         }
+  
+  ];
+
+        
+
+
+
+   staticSnippets = {};
+   staticSnippets.concat = (function() {
+   
+      var i, len, results;
     results = [];
     for (i = 0, len = environments.length; i < len; i++) {
       env = environments[i];
       results.push({
-        caption: "\\begin{" + env + "}...",
-        snippet: "\\begin{" + env + "}\n\t$1\n\\end{" + env + "}",
-        meta: "env"
+       // caption: "\\begin{" + env + "}...",
+       // snippet: "\\begin{" + env + "}\n\t$1\n\\end{" + env + "}",
+           // meta: "env"
+          caption: "falit",
+          snippet: "my name is falit",
+          meta: "env"    
       });
     }
+    console.log("lorgot"+results);
     return results;
   });
 
@@ -1819,7 +1879,8 @@ var keyWordCompleter = {
 
  
   staticSnippets = staticSnippets.concat([
-    {
+   /*
+          {
       caption: "\\begin{array}...",
       snippet: "\\begin{array}{${1:cc}}\n\t$2 & $3 \\\\\\\\\n\t$4 & $5\n\\end{array}",
       meta: "env"
@@ -1851,11 +1912,14 @@ var keyWordCompleter = {
       caption: "\\begin{frame}...",
       snippet: "\\begin{frame}{${1:Frame Title}}\n\t$2\n\\end{frame}",
       meta: "env"
-    }
+    }*/
   ]);
+
+
   parseCustomEnvironments = function(text) {
     var iterations, match, re, result;
     re = /^\\newenvironment{(\w+)}.*$/gm;
+    //re= 
     result = [];
     iterations = 0;
     while (match = re.exec(text)) {
@@ -1893,7 +1957,7 @@ var latexCompleter = {
          getCompletions: function(editor, session, pos, prefix, callback) {
            var beginCommands, command, customEnvironments, docText, environment, i, j, len, len1, parsedItems, parsedItemsMap, snippets;
       docText = session.getValue();
-      customEnvironments = parseCustomEnvironments(docText);
+     /* customEnvironments = parseCustomEnvironments(docText);
       beginCommands = parseBeginCommands(docText);
       parsedItemsMap = {};
       for (i = 0, len = customEnvironments.length; i < len; i++) {
@@ -1905,29 +1969,49 @@ var latexCompleter = {
         parsedItemsMap[command.name] = command;
       }
      // parsedItems = _.values(parsedItemsMap);
-     parsedItems = new Array();
-
+     console.log("the following is the begincommand")
+     console.log(beginCommands.toString());
+     console.log("\n the following is the pasredItemsMap ");
+     console.log(parsedItemsMap.toString());
+    */  parsedItems = new Array();
+/*
      for(var key in parsedItemsMap)
      {
     
              parsedItems.push(parsedItemsMap[key]);
     
       }
-
-      snippets = staticSnippets.concat(parsedItems.map(function(item) {
-        return {
-          caption: "\\begin{" + item.name + "}...",
-          snippet: "\\begin{" + item.name + "}\n" + (item.whitespace || '') + "$0\n\\end{" + item.name + "}",
-          meta: "env"
-        };
-      })).concat(parsedItems.map(function(item) {
+   */ 
+     console.log(JSON.stringify(parsedItems));    
+  
+   
+    console.log("falitjain");
+    console.log(staticSnippets);
+     
+     snippets = staticSnippets.concat(parsedItems.map(function(item) {
+       // return {
+       //   caption: "\\begin{" + item.name + "}...",
+       //   snippet: "\\begin{" + item.name + "}\n" + (item.whitespace || '') + "$0\n\\end{" + item.name + "}",
+       //   meta: "env"
+       // };
+          return{
+             caption: "\\falit",
+             snippet: "\\hello to my world",
+             meta: "env"
+          };
+            
+      }))
+     /*.concat(parsedItems.map(function(item) {
         return {
           caption: "\\end{" + item.name + "}",
           value: "\\end{" + item.name + "}",
           meta: "env"
         };
       }));
-      return callback(null, snippets);
+     */
+      console.log("lorem  ipsum");
+     console.log(snippets);
+      return callback(null,test123);
     }
 };   
 
@@ -1938,7 +2022,7 @@ var latexCompleter = {
 /*var rhymeCompleter = {
       getCompletions: function(editor, session, pos, prefix, callback) {
           if (prefix.length === 0) {
-              callback(null, []);
+               callback(null, []);
               return
           }
           $.getJSON(
