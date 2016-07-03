@@ -1813,7 +1813,7 @@ var keyWordCompleter = {
              meta: "env"
          },{
             caption: "cases",
-            snippet: "\\begin{cases}\n$case1\n\\$case2\n\\end{cases}",
+            snippet: "\\begin{cases}\n\\$case1 \\\\\\ \n\\$case2\n\\end{cases}",
             meta: "env",
          },{
             caption: "sum",
