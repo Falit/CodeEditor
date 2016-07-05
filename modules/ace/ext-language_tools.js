@@ -1798,12 +1798,12 @@ var keyWordCompleter = {
 
 
 /** Latex Completions **/ 
- var  falit2,env, environments, parseBeginCommands, parseCustomEnvironments, staticSnippets;
-  environments = ["abstract", "align", "align*", "equation", "equation*", "gather", "gather*", "multline", "multline*", "split", "verbatim"];
+// var  falit2,env, environments, parseBeginCommands, parseCustomEnvironments, staticSnippets;
+  //environments = ["abstract", "align", "align*", "equation", "equation*", "gather", "gather*", "multline", "multline*", "split", "verbatim"];
 
 
 
-  var test123 = [{
+  var latexSnippets = [{
             caption: "frac",
             snippet: " \\frac{$arg}{$arg}",
             meta: "env",
@@ -1847,13 +1847,16 @@ var keyWordCompleter = {
             caption: "underbrace",
             snippet: "\\underbrace{$1:x}",
             meta: "env",
+         },{       
+           caption: "Array",
+           snippet: "\\begin{array}{${1:cc}}\n\t$2 & $3 \\\\\\\\\n\t$4 & $5\n\\end{array}",
+           meta: "env",
          }
-  
-  ];
+   ];
 
         
 
-
+/*
 
    staticSnippets = {};
    staticSnippets.concat = (function() {
@@ -1877,7 +1880,7 @@ var keyWordCompleter = {
 
 
 
- 
+/* 
   staticSnippets = staticSnippets.concat([
    /*
           {
@@ -1912,7 +1915,7 @@ var keyWordCompleter = {
       caption: "\\begin{frame}...",
       snippet: "\\begin{frame}{${1:Frame Title}}\n\t$2\n\\end{frame}",
       meta: "env"
-    }*/
+    }
   ]);
 
 
@@ -1951,12 +1954,10 @@ var keyWordCompleter = {
     }
     return result;
   };
-
+*/
 
 var latexCompleter = {
          getCompletions: function(editor, session, pos, prefix, callback) {
-           var beginCommands, command, customEnvironments, docText, environment, i, j, len, len1, parsedItems, parsedItemsMap, snippets;
-      docText = session.getValue();
      /* customEnvironments = parseCustomEnvironments(docText);
       beginCommands = parseBeginCommands(docText);
       parsedItemsMap = {};
@@ -1969,11 +1970,8 @@ var latexCompleter = {
         parsedItemsMap[command.name] = command;
       }
      // parsedItems = _.values(parsedItemsMap);
-     console.log("the following is the begincommand")
-     console.log(beginCommands.toString());
-     console.log("\n the following is the pasredItemsMap ");
-     console.log(parsedItemsMap.toString());
-    */  parsedItems = new Array();
+
+
 /*
      for(var key in parsedItemsMap)
      {
@@ -1981,7 +1979,7 @@ var latexCompleter = {
              parsedItems.push(parsedItemsMap[key]);
     
       }
-   */ 
+   
      console.log(JSON.stringify(parsedItems));    
   
    
@@ -2001,17 +1999,8 @@ var latexCompleter = {
           };
             
       }))
-     /*.concat(parsedItems.map(function(item) {
-        return {
-          caption: "\\end{" + item.name + "}",
-          value: "\\end{" + item.name + "}",
-          meta: "env"
-        };
-      }));
      */
-      console.log("lorem  ipsum");
-     console.log(snippets);
-      return callback(null,test123);
+     return callback(null,latexSnippets);
     }
 };   
 
