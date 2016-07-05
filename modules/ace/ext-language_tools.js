@@ -383,7 +383,6 @@ var SnippetManager = function() {
 
     this.getActiveScopes = function(editor) {
         var scope = this.$getScope(editor);
-        console.log(scope);
         var scopes = [scope];
         var snippetMap = this.snippetMap;
         if (snippetMap[scope] && snippetMap[scope].includeScopes) {
@@ -1798,11 +1797,6 @@ var keyWordCompleter = {
 
 
 /** Latex Completions **/ 
-// var  falit2,env, environments, parseBeginCommands, parseCustomEnvironments, staticSnippets;
-  //environments = ["abstract", "align", "align*", "equation", "equation*", "gather", "gather*", "multline", "multline*", "split", "verbatim"];
-
-
-
   var latexSnippets = [{
             caption: "frac",
             snippet: " \\frac{$arg}{$arg}",
@@ -1856,180 +1850,14 @@ var keyWordCompleter = {
 
         
 
-/*
-
-   staticSnippets = {};
-   staticSnippets.concat = (function() {
-   
-      var i, len, results;
-    results = [];
-    for (i = 0, len = environments.length; i < len; i++) {
-      env = environments[i];
-      results.push({
-       // caption: "\\begin{" + env + "}...",
-       // snippet: "\\begin{" + env + "}\n\t$1\n\\end{" + env + "}",
-           // meta: "env"
-          caption: "falit",
-          snippet: "my name is falit",
-          meta: "env"    
-      });
-    }
-    console.log("lorgot"+results);
-    return results;
-  });
-
-
-
-/* 
-  staticSnippets = staticSnippets.concat([
-   /*
-          {
-      caption: "\\begin{array}...",
-      snippet: "\\begin{array}{${1:cc}}\n\t$2 & $3 \\\\\\\\\n\t$4 & $5\n\\end{array}",
-      meta: "env"
-    }, {
-      caption: "\\begin{figure}...",
-      snippet: "\\begin{figure}\n\t\\centering\n\t\\includegraphics{$1}\n\t\\caption{${2:Caption}}\n\t\\label{${3:fig:my_label}}\n\\end{figure}",
-      meta: "env"
-    }, {
-      caption: "\\begin{tabular}...",
-      snippet: "\\begin{tabular}{${1:c|c}}\n\t$2 & $3 \\\\\\\\\n\t$4 & $5\n\\end{tabular}",
-      meta: "env"
-    }, {
-      caption: "\\begin{table}...",
-      snippet: "\\begin{table}[$1]\n\t\\centering\n\t\\begin{tabular}{${2:c|c}}\n\t\t$3 & $4 \\\\\\\\\n\t\t$5 & $6\n\t\\end{tabular}\n\t\\caption{${7:Caption}}\n\t\\label{${8:tab:my_label}}\n\\end{table}",
-      meta: "env"
-    }, {
-      caption: "\\begin{list}...",
-      snippet: "\\begin{list}\n\t\\item $1\n\\end{list}",
-      meta: "env"
-    }, {
-      caption: "\\begin{enumerate}...",
-      snippet: "\\begin{enumerate}\n\t\\item $1\n\\end{enumerate}",
-      meta: "env"
-    }, {
-      caption: "\\begin{itemize}...",
-      snippet: "\\begin{itemize}\n\t\\item $1\n\\end{itemize}",
-      meta: "env"
-    }, {
-      caption: "\\begin{frame}...",
-      snippet: "\\begin{frame}{${1:Frame Title}}\n\t$2\n\\end{frame}",
-      meta: "env"
-    }
-  ]);
-
-
-  parseCustomEnvironments = function(text) {
-    var iterations, match, re, result;
-    re = /^\\newenvironment{(\w+)}.*$/gm;
-    //re= 
-    result = [];
-    iterations = 0;
-    while (match = re.exec(text)) {
-      result.push({
-        name: match[1],
-        whitespace: null
-      });
-      iterations += 1;
-      if (iterations >= 1000) {
-        return result;
-      }
-    }
-    return result;
-  };
-  parseBeginCommands = function(text) {
-    var iterations, match, re, result;
-    re = /^\\begin{(\w+)}.*\n([\t ]*).*$/gm;
-    result = [];
-    iterations = 0;
-    while (match = re.exec(text)) {
-      result.push({
-        name: match[1],
-        whitespace: match[2]
-      });
-      iterations += 1;
-      if (iterations >= 1000) {
-        return result;
-      }
-    }
-    return result;
-  };
-*/
-
 var latexCompleter = {
          getCompletions: function(editor, session, pos, prefix, callback) {
-     /* customEnvironments = parseCustomEnvironments(docText);
-      beginCommands = parseBeginCommands(docText);
-      parsedItemsMap = {};
-      for (i = 0, len = customEnvironments.length; i < len; i++) {
-        environment = customEnvironments[i];
-        parsedItemsMap[environment.name] = environment;
-      }
-      for (j = 0, len1 = beginCommands.length; j < len1; j++) {
-        command = beginCommands[j];
-        parsedItemsMap[command.name] = command;
-      }
-     // parsedItems = _.values(parsedItemsMap);
-
-
-/*
-     for(var key in parsedItemsMap)
-     {
-    
-             parsedItems.push(parsedItemsMap[key]);
-    
-      }
-   
-     console.log(JSON.stringify(parsedItems));    
-  
-   
-    console.log("falitjain");
-    console.log(staticSnippets);
-     
-     snippets = staticSnippets.concat(parsedItems.map(function(item) {
-       // return {
-       //   caption: "\\begin{" + item.name + "}...",
-       //   snippet: "\\begin{" + item.name + "}\n" + (item.whitespace || '') + "$0\n\\end{" + item.name + "}",
-       //   meta: "env"
-       // };
-          return{
-             caption: "\\falit",
-             snippet: "\\hello to my world",
-             meta: "env"
-          };
-            
-      }))
-     */
      return callback(null,latexSnippets);
     }
 };   
 
 
 
-
-/* The :following  is an example of a custom  autocompletions */
-/*var rhymeCompleter = {
-      getCompletions: function(editor, session, pos, prefix, callback) {
-          if (prefix.length === 0) {
-               callback(null, []);
-              return
-          }
-          $.getJSON(
-              "http://rhymebrain.com/talk?function=getRhymes&word=" + prefix,
-              function(wordList) {
-                  // wordList like [{"word":"flow","freq":24,"score":300,"flags":"bc","syllables":"1"}]
-                  callback(null, wordList.map(function(ea) {
-                      return {
-                          name: ea.word,
-                          value: ea.word,
-                          score: ea.score,
-                          meta: "rhyme"
-                      }
-                  }));
-              })
-      }
-  };
-*/
 var snippetCompleter = {   
     getCompletions: function(editor, session, pos, prefix, callback) {
         var snippetMap = snippetManager.snippetMap;
